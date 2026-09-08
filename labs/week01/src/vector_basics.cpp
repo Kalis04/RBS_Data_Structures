@@ -13,5 +13,9 @@ int main() {
     std::cout << '\n';
 
     // TODO: add 50, then print the size, first element, and last element.
+    values.push_back(50);
+    std::cout << "Size: " << values.size() << '\n';
+    std::cout << "First: " << values.front() << '\n';
+    std::cout << "Last: " << values.back() << '\n'; 
 }
 

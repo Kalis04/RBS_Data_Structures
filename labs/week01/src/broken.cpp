@@ -2,13 +2,13 @@
 #include <vector>
 
 int main() {
-    std::vector<int> values{4, 8, 15, 16, 23, 42}
+    std::vector<int> values{4, 8, 15, 16, 23, 42};
 
-    for (int value : value) {
-        cout << value << ' ';
+    for (int value : values) {
+        std::cout << value << ' ';
     }
 
-    std::cout << '\n'
-    return "0";
+    std::cout << '\n';
+    return 0;
 }
 
