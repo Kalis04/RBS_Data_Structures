@@ -20,7 +20,10 @@ int main() {
 
     // TODO: Explain why dangling must not be dereferenced here.
     // Do not add: std::cout << *dangling;
+    //temporary was destroyed when it went out of scope. dangling points to a dead object, so we can't dereference it.
 
     dangling = nullptr;
     std::cout << "dangling reset to null: " << (dangling == nullptr) << '\n';
+
+    return 0;
 }

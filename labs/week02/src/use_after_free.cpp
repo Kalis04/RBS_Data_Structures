@@ -8,4 +8,7 @@ int main() {
     std::cout << *p << '\n';
 
     // TODO: In a comment, describe a correct lifetime/ownership repair.
+    // Print the value BEFORE deleting, then delete and set p = nullptr.
+
+    return 0;
 }
