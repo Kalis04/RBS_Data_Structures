@@ -1,12 +1,7 @@
 #include "int_linked_list.hpp"
-
+#include <cstddef>
 #include <stdexcept>
 
-namespace {
-[[noreturn]] void todo(const char* operation) {
-    throw std::logic_error(operation);
-}
-}  // namespace
 
 IntLinkedList::~IntLinkedList() {
     clear();
@@ -79,24 +74,66 @@ bool IntLinkedList::contains(int value) const noexcept {
 }
 
 bool IntLinkedList::insert_after_first(int target, int value) {
-    (void)target;
-    (void)value;
-    todo("TODO: implement insert_after_first()");
+    Node* current = head_;
+    while (current) {
+        if (current->value == target) {
+            Node* new_node = new Node{value, current->next};
+            current->next = new_node;
+            if (current == tail_) {
+                tail_ = new_node;
+            }
+            size_++;
+            return true;
+        }
+        current = current->next;
+    }
+    return false;  // TODO
+
 }
 
 bool IntLinkedList::erase_after_first(int target) {
-    (void)target;
-    todo("TODO: implement erase_after_first()");
+    Node* current = head_;
+    while (current) {
+        if (current->value == target) {
+            Node* node_to_delete = current->next;
+            if (node_to_delete) {
+                current->next = node_to_delete->next;
+                if (node_to_delete == tail_) {
+                    tail_ = current;
+                }
+                delete node_to_delete;
+                size_--;
+                return true;
+            }
+            return false;  // No node to erase after target
+        }
+        current = current->next;
+    }
+    return false;  // Target not found
 }
 
 void IntLinkedList::clear() noexcept {
     // TODO: release every reachable node exactly once, then restore empty state.
-    head_ = nullptr;
+    while (head_) {
+        Node* node_to_delete = head_;
+        head_ = head_->next;
+        delete node_to_delete;
+    }
     tail_ = nullptr;
     size_ = 0;
 }
 
 bool IntLinkedList::check_invariant() const noexcept {
     // TODO: verify empty/non-empty state, reachability, tail, count, and no cycle.
-    return size_ == 0 && head_ == nullptr && tail_ == nullptr;
+    if (size_ == 0) {
+        return head_ == nullptr && tail_ == nullptr;
+    }
+    if (!head_ || !tail_ || tail_->next != nullptr) return false;
+
+    const Node* current = head_;
+    for (std::size_t i = 1; i < size_; ++i) {   
+        current = current->next;
+        if (!current) return false;            
+    }
+    return current == tail_ && current->next == nullptr;
 }
