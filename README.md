@@ -5,12 +5,17 @@ Public student materials for **BS0013 Data Structures** at Riga Business School,
 ## Course materials
 
 - `syllabus/` — overall course syllabus;
-- `lectures/` — weekly lecture materials as released;
+- `lectures/` — weekly lecture reading as released (including Week 9 BSTs);
 - `quizzes/` — student self-check materials where published;
 - `labs/week01/` — Week 1 practical;
 - `labs/week02/` — Week 2 practical;
 - `labs/week03/` — Week 3 dynamic-array practical;
-- `labs/week04/` — Week 4 linked-structures practical.
+- `labs/week04/` — Week 4 linked-structures practical;
+- `labs/week05/` — Week 5 circular-queue practical;
+- `labs/week06/` — Week 6 linear-probing hash-map practical;
+- `labs/week08/` — Week 8 binary-heap / priority-queue practical;
+- `labs/week09/` — Week 9 binary-search-tree practical;
+- `labs/week10/` — Week 10 AVL-tree practical.
 
 ## Use GitHub Codespaces
 
@@ -53,25 +58,23 @@ git push origin main
 
 A normal weekly update should merge cleanly because new material is usually added in new week folders. If Git reports a merge conflict, inspect `git status` and resolve the conflict before continuing; do not discard your previous lab work merely to obtain the update.
 
-## Current practical: Week 4
+## Current practical: Week 10
 
-After synchronizing your fork:
+After updating your fork (see [Week 10 instructions](labs/week10/instructions.md)):
 
-```bash
-cd labs/week04
+~~~bash
+cd labs/week10
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
-```
-
-Then read `labs/week04/instructions.md` and `labs/week04/assignment.md`.
-
-The starter compiles before the TODOs are completed. When your implementation is ready, run:
-
-```bash
 ctest --test-dir build --output-on-failure
-bash scripts/check-week04.sh
-```
+~~~
 
-The Week 4 verification script also runs the public tests with AddressSanitizer and UndefinedBehaviorSanitizer enabled.
+The starter intentionally fails its tests until the AVL TODOs are implemented. After implementation run `bash scripts/check-week10.sh` for normal and sanitizer verification.
 
-Instructor notes, solutions, answer keys, private tests, and assessment rationale are maintained separately and are not part of this public repository.
+## Week 10 lecture reading
+
+[Balanced Search Trees — AVL Invariants and Rotations](lectures/week10/lecture.md).
+
+## Previous prerequisite
+
+[Week 9 — Binary Search Trees](lectures/week09/lecture.md) and [Week 9 practical](labs/week09/).
