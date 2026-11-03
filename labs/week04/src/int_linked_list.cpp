@@ -105,7 +105,7 @@ bool IntLinkedList::erase_after_first(int target) {
                 size_--;
                 return true;
             }
-            return false;  // No node to erase after target
+            return false; 
         }
         current = current->next;
     }
